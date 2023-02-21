@@ -110,8 +110,22 @@ c1 = find(((b(:,15) < 13.05)&(b(:,16) < 44.5))
 b(c1,end+1) = 2;
 dec_new = b(:,end);
 dec_new(dec_new==0) = 1;
-% calculating error probabilities
- 
+
+% replacing NaN values with mean values of each column
+% bmean = nanmean(b);
+% X=b-ones(N,1)*bmean;
+% rng('default')
+% for i=1:N
+% noise = randn(1,F)*0.05;
+% indx = isnan(X(i,:));
+% X(i,indx) = bmean(indx)+noise(indx);
+% end
+% diagonalizing matrix
+% R=X'*X/N;
+% [U,D]=eig(R);
+% Y=X*U*sqrt(inv(D));
+
+% calculating error probabilities 
 N1=sum(dec==1); N2=sum(dec==2);
 false_pos_new=sum((dec_new==2)&(dec==1))/N1; %0.0
 true_pos_new=sum((dec_new==2)&(dec==2))/N2; %0.696
