@@ -72,45 +72,61 @@ true_neg=sum((dec==1)&(c==1))/N1; %0.7261
 
 %% Hierarchical Classification
 
-% fitctree clustering
-%b = [b';dec']'; % Adding back again column with decision made by doctors
-
-% replacing NaN values with mean values of each column
-bmean = nanmean(b);
-X=b-ones(N,1)*bmean;
-rng('default')
+clc;
+close all;
+clear all;
+% loading data matrix
+load('ckd.mat');
+% Pre processing data
+a = ckdData1;
+% changing nominal feature values to meaningful numeric values
+keylist={'normal','abnormal','present','notpresent','yes',...
+'no','good','poor','ckd','notckd','?',''};
+keymap=[0,1,0,1,0,1,0,1,2,1,NaN,NaN];
+[N,F] = size(a);
 for i=1:N
-    noise = randn(1,F)*0.05;
-    indx = isnan(X(i,:));
-    X(i,indx) = bmean(indx)+noise(indx);
+for j=1:F
+c = strtrim(a{i,j});
+check = strcmp(c,keylist);
+if sum(check)==0
+b(i,j) = str2num(a{i,j});% from text to numeric
+else
+ii=find(check==1);
+b(i,j)=keymap(ii);% use the lists
 end
+end
+end
+dec = b(:,end);
+b(:,end)=[];
 
-% diagonalizing matrix 
-%R=X'*X/N;
-%[U,D]=eig(R);
-%b=b*U*sqrt(inv(D));
 % obtaining decision tree
 tc = fitctree(b,dec);
 view(tc,'Mode','graph')
-%print('5hc-3','-dpng')
-% making new decisions using most important features and theor values 
+% making new decisions using most important features and theor values
 % obtained from decision tree before
-%c21 = find((b(:,15) >= 13.05)&(b(:,3) < 1.0175));
-%c22 = find((b(:,15) >= 13.05)&(b(:,3) >= 1.0175)&(b(:,4) >= 0.5));
-%c23 = find((b(:,15) < 13.05)&(b(:,16) < 44.5));
-%c2 = c21+c22+c23;
-%c11= find((b(:,15) >= 13.05)&(b(:,3) >= 1.0175)&(b(:,4) < 0.5));
-%c12 = find((b(:,15) < 13.05)&(b(:,16) >= 44.5));
-
+c1 = find(((b(:,15) < 13.05)&(b(:,16) < 44.5))
+ | ((b(:,15)>=13.05)&(b(:,15)<1.0175)) |
+ ((b(:,15)>=13.05)&(b(:,15)>=1.0175)&(b(:,4)>=0.5)));
+b(c1,end+1) = 2;
+dec_new = b(:,end);
+dec_new(dec_new==0) = 1;
 % calculating error probabilities
-%false_pos_new=sum((dec_new==2)&(c==1))/N1; %0.2739
-%true_pos_new=sum((dec_new==2)&(c==2))/N2; %1
-%false_neg_new=sum((dec_new==1)&(c==2))/N2; %0
-%true_neg_new=sum((dec_new==1)&(c==1))/N1; %0.7261
+ 
+N1=sum(dec==1); N2=sum(dec==2);
+false_pos_new=sum((dec_new==2)&(dec==1))/N1; %0.0
+true_pos_new=sum((dec_new==2)&(dec==2))/N2; %0.696
+false_neg_new=sum((dec_new==1)&(dec==2))/N2; %0.3040
+true_neg_new=sum((dec_new==1)&(dec==1))/N1; %1
 
 % Inference:
-% From the decision tree it can be inferred that
-% patients with feature Y(:,23) < 0.747959 ('Pedal Edema' condition)
-% are most likely to have CKD. Otherwise, if patients dont have pedal 
-% edema, then those with Y(:,1) >= 1.50368 (elder patients) are likely to
-% have CKD
+% From the decision tree obtained after fitctree classification, it is known that feature number 15, 
+% or Blood Haemoglobin levels (in gms) is the most important feature deciding whether or not patient 
+% suffers from CKD. Patients are most likely to have CKD when their Blood Haemoglobin levels are 
+% below 13.05 gms and Packed cell volume is below 44.5. Otherwise, if patients’ Blood haemoglobin 
+% level is above 13.05, then those with Specific gravity < 1.0175 are likely to have CKD; 
+% and if both Blood Haemoglobin and Specific gravity are above the previously mentioned values then 
+% patients with Albumin above 0.5 are likely to have CKD.
+
+% After, using this information from decision tree regarding most important features, 
+% we can see the sensitivity of this classification is increased, with probability of 
+% True Negative increased to 1 from 0.7261.
