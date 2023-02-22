@@ -27,6 +27,6 @@ which are applied to:
 - Chronic kidney disease
 - Electroencephalogram
 
-Each folder in repo includes pre-processed dataset along with code files for a specific 
+Each folder in repo includes its description in README.md and pre-processed dataset along with code files for a specific 
 problem i.e. Neuralnet classification of Arrhythmia patients will contain data for
 arrhythmia patients and python code files.
