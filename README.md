@@ -5,19 +5,20 @@ and machine learning (ML) techniques to medical problems using relevant open sou
 
 ML techniques include:
 - Regression
-  + Linear regression
-  + Principal component regression
+  + [Linear regression](/Regression%20model%20(Parkinson's%20patients))
+  + [Principal component regression](/Principal%20Component%20analysis)
 - Classification
-  + Minimum distance and Bayesian classification
-  + Support vector machine (SVM) classification
+  + [Minimum distance and Bayesian classification](/Minimum%20Distance%20and%20Bayesian%20classification%20(Arrythmia%20patients))
+  + [Support vector machine (SVM) classification](/SVM%20Classification%20(Arrhythmia%20patients))
 - Clustering
-  + Hierarchical clustering
-  + K-means clustering
+  + [Hierarchical clustering](/Hierarchical%20clustering)
+  + [K-means clustering](/K-Means%20clustering%20(Arrythmia%20patients))
+  + [Image processing by K-means](/Image%20Processing%20of%20Moles)
 - Neural networks
-  + NN regression
-  + NN classification
-- Decision trees
-- Hidden Markov model
+  + [NN regression](/Neural%20Network%20regression%20(Parkinson's))
+  + [NN classification](/Neural%20Network%20classification%20(Arrythmia))
+- [Decision trees](/Hierarchical%20clustering)
+- [Hidden Markov model](/Vowel%20Recognition%20(Hidden%20Markov%20Model))
 
 which are applied to:
 - Parkinson's disease
