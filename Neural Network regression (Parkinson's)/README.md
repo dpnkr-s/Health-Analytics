@@ -2,7 +2,7 @@
 
 Regression is performed on Parkinson’s disease patients’ database and it is implemented using neural networks from TensorFlow library. Results of regression are plotted and comparison is made between the performance of neural networks, with hidden nodes and without hidden nodes. Also, comparison is made between regression models obtained from neural networks and other methods implemented previously.
 
-(Clone this repository inside TensorFlow working environment before running the python code.)
+(*Clone this repository inside TensorFlow working environment before running the python code.*)
 
 ### NN w/o hidden nodes
 
