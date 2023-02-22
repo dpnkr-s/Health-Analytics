@@ -1,6 +1,6 @@
 ## Linear Regression
 
-Linear regression is performed on the given data of Parkinson's disease patients in MATLAB. Features like Unified Parkinson’s Disease Rating Scale (UPDRS:  total UPDRS value and Jitter value), are expensive to measure and are estimated by regressing them over other features less expensive to measure. 
+Linear regression is performed on the given data of Parkinson's disease patients in MATLAB. Features like Unified Parkinson’s Disease Rating Scale [UPDRS:  total UPDRS value (F0=7) and Jitter value (F0=5)], are expensive to measure and are estimated by regressing them over other features less expensive to measure. 
 
 Three different algorithms to solve linear regression problem are implemented and comparison is made among the obtained results. Different methods being implemented are as follows,
 
