@@ -1,6 +1,6 @@
 ## Principal Component Regression
 
-Regression is performed with the data for Parkinson's disease patients for features like Unified Parkinson's Disease Rating Scale, total UPDRS value (F0 = 7), and JITTER value (F0 = 5), but with only L uncorrelated features instead of all measured features. These uncorrelated features are extracted using Principle component analysis (PCA).
+Regression is performed with the data for Parkinson's disease patients for features like Unified Parkinson's Disease Rating Scale, total UPDRS value (F0=7), and JITTER value (F0=5), but with only L uncorrelated features instead of all measured features. These uncorrelated features are extracted using Principle component analysis (PCA).
 
 Comparison is made between the results of regression with principal component analysis (PCR) and MSE regression performed in [Linear Regression](/Regression%20model%20(Parkinson's%20patients))
 
