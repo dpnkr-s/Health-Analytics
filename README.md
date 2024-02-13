@@ -1,7 +1,7 @@
 ## Health Analytics
 
 This repo contains MATLAB and Python/TensorFlow programs applying pattern recognition
-and machine learning (ML) techniques to medical problems using relevant open source datasets.
+and machine learning (ML) techniques in medical domain using relevant open source datasets.
 
 ML techniques include:
 - Regression
